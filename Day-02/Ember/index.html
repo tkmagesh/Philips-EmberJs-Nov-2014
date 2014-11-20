@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+  .completed {
+    text-decoration: line-through;
+    font-style: italic;
+    font-weight: bold;
+    color : red;
+  }
+  .nav{
+    -webkit-padding-start: 0px;
+    list-style: none;
+  }
+  .nav li{
+    display: inline;
+    margin-right: 5px;
+  }
+  </style>
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <h2>Task Manager</h2>
+    <ul class="nav">
+      <li>{{#link-to 'tasks'}} Tasks {{/link-to}}</li>
+      <li>{{#link-to 'about'}} About {{/link-to}}</li>
+    </ul>
+    <hr>
+    
+    
+    
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="about">
+  <div>
+  A simple Task Manager using Ember.js
+  <br>
+  {{currentDateTime}}
+  </div>
+  </script>
+
+  <script type="text/x-handlebars" id="tasks">
+    <div>
+      Tasks
+    </div>
+    <ul>
+    {{#each item in model}}
+      <li {{bind-attr class="item.isCompleted:completed"}}>{{item.name}}</li>
+    {{/each}}
+    </ul>
+    <hr>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="task">
+  {{id}}  <br/>
+  {{name}} <br/>
+  {{isCompleted}} <br/>
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v1.3.0.js"></script>
+  <script src="js/libs/ember-1.8.1.js"></script>
+  <script src="js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
